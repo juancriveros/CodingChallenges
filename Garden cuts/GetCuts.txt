@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Cuts
+{
+    class Program
+    {
+        public int GetCuts(int[] N)
+        {
+            //int[] N = { 8, 5, 4, 8, 7, 1, 9};
+
+            int cuts = 0;
+
+            for (int i = 1; i < N.Length - 1; i++)
+            {
+                if (N[i] > N[i - 1] && N[i] <= N[i + 1])
+                {
+                    N[i + 1] = N[i] - 1;
+                    cuts++;
+
+                }
+                else if (N[i] < N[i - 1] && N[i] >= N[i + 1])
+                {
+
+                    N[i] = N[i + 1] - 1;
+                    cuts++;
+
+                }
+                else if(N[i] == N[i-1])
+                {
+                    if (N[i] < N[i + 1])
+                    {
+                        N[i] = N[i] - 1;
+                        cuts++;
+                    }
+                    else
+                    {
+                        N[i] = N[i + 1] - 1;
+                        cuts++;
+                    }
+                }
+            }
+
+            return cuts;
+        }
+    }
+
+}
