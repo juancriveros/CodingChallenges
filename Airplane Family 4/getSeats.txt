@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Seats
+{
+    class Program
+    {
+        public int getSeats(int N, string S)
+        {
+            //int N = 3;
+            //string S = "1A, 1K, 2C, 2G";
+
+            List<String> busy = S.Split(',').Select(p => p.Trim()).ToList();
+            int seats = 0;
+
+            for (int i = 1; i <= N; i++)
+            {
+
+                if (!busy.Contains(i + "B") && !busy.Contains(i + "C") && !busy.Contains(i + "D") && !busy.Contains(i + "E"))
+                {
+                    busy.Add(i + "B");
+                    busy.Add(i + "C");
+                    busy.Add(i + "D");
+                    busy.Add(i + "E");
+                    seats++;
+                }
+                if (!busy.Contains(i + "F") && !busy.Contains(i + "G") && !busy.Contains(i + "H") && !busy.Contains(i + "I"))
+                {
+                    busy.Add(i + "F");
+                    busy.Add(i + "G");
+                    busy.Add(i + "H");
+                    busy.Add(i + "I");
+                    seats++;
+                }
+                if (!busy.Contains(i + "D") && !busy.Contains(i + "E") && !busy.Contains(i + "F") && !busy.Contains(i + "G"))
+                {
+                    busy.Add(i + "D");
+                    busy.Add(i + "E");
+                    busy.Add(i + "F");
+                    busy.Add(i + "G");
+                    seats++;
+                }
+            }
+
+            return seats;
+        }
+    }
+
+}
