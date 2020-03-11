@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Tobogan
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int childrens = Convert.ToInt32(Console.ReadLine());
+            string ages = Console.ReadLine();
+
+            List<int> ageList = ages.Split(' ').Select(p => Convert.ToInt32(p)).ToList().Where(p => p >= 5 && p <=9).ToList();
+
+            int childrensCan = ageList.Count;
+
+            Console.Write(childrensCan);
+        }
+    }
+
+}
