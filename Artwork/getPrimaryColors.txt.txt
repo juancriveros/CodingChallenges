@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PrimaryColors
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int colors = Convert.ToInt32(Console.ReadLine());
+            List<int> imageColors = new List<int>();
+            int[] primaryColors = { 2, 3, 5, 7, 11 };
+            for (int i = 0; i < colors; i++)
+            {
+                imageColors.Add(Convert.ToInt32(Console.ReadLine()));
+            }
+            List<int> outputColors = new List<int>();
+            foreach (int item in imageColors)
+            {
+                foreach (int prim in primaryColors.ToList())
+                {
+                    if (item % prim == 0 && outputColors.IndexOf(prim) == -1)
+                        outputColors.Add(prim);
+                }
+            }
+            outputColors.Sort();
+            string primary = String.Join(" ", outputColors.ToArray());
+
+            Console.WriteLine(primary);
+        }
+    }
+
+}
