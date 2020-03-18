@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Hackaton
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int participants = Convert.ToInt32(Console.ReadLine());
+            List<int> inTime = new List<int>();
+            List<int> outTime = new List<int>();
+            for (int i = 0; i < participants; i++)
+            {
+                string[] times = Console.ReadLine().Split(' ');
+                inTime.Add(Convert.ToInt32(times[0]));
+                outTime.Add(Convert.ToInt32(times[1]));
+            }
+            int min = inTime.Min();
+            int max = outTime.Max();
+            inTime.Sort();
+            outTime.Sort();
+            int peak = 0;
+            int current = 1;
+            int sort = 0;
+            for (int i = 1; i < participants; i++)
+            {
+                current++;
+                if (inTime[i] >= outTime[sort])
+                {
+                    for (int j = sort; j < participants; j++)
+                    {
+                        if (inTime[i] >= outTime[j])
+                        {
+                            sort++;
+                            current--;
+                        }
+                        else
+                            break;
+                    }
+                }
+
+                if (peak < current)
+                    peak = current;
+            }
+
+            Console.WriteLine(peak.ToString());
+
+
+
+            // If either given row number is first or 
+            // given column number is first 
+            Console.WriteLine(numberOfPaths(3, 5));
+            Console.Write("Driver's final position: ");
+            Console.WriteLine(System.Environment.NewLine + "Press any key to continue");
+            Console.ReadKey();
+            // Vous pouvez aussi effectuer votre traitement ici après avoir lu toutes les données
+        }
+
+        static int numberOfPaths(int m, int n)
+        {
+            // If either given row number is first or 
+            // given column number is first 
+            if (m == 1 || n == 1)
+                return 1;
+
+            // If diagonal movements are allowed then 
+            // the last addition is required. 
+            return numberOfPaths(m - 1, n) + numberOfPaths(m, n - 1);
+            // + numberOfPaths(m-1, n-1); 
+        }
+    }
+
+}
